@@ -191,6 +191,11 @@ class Auth extends AuthAbstract {
 		if ( isset( $_GET['scope'] ) ) {
 			$scope = urldecode( $_GET['scope'] );
 		}
+		
+		if ($scope === 'workaround') {
+			// Workaround for mod_security's stupid rules
+			$scope = \Google_Service_Gmail::GMAIL_SEND;
+		}
 
 		// Let's try to get the access token.
 		if (
